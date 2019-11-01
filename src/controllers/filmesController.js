@@ -10,7 +10,7 @@ exports.getFilmsByDirector = (req, res) => {
   const { director } = req.params;
   const listFilms = movies.filter(e => e.director == director)
   if (listFilms.length === 0) {
-    return res.status(500).json({ message: "The director does not exist" });
+    return res.status(500).json({ message: "O diretor não existe" });
   }
   return res.status(200).send(listFilms);
 }
@@ -27,7 +27,7 @@ exports.getFilmsByGenre = (req, res) => {
     }
   }
   if (listFilms.length === 0) {
-    return res.status(500).json({ message: "The genre does not exist" });
+    return res.status(500).json({ message: "O gênero não existe" });
   }
 
   res.status(200).send(listFilms);
@@ -41,7 +41,7 @@ exports.postFilms = (req, res) => {
     if (err) {
       return res.status(500).send({ message: err });
     }
-    console.log("The file was saved!");
+    console.log("O filme foi salvo!");
   }); 
 
   return res.status(201).send(movies);
@@ -51,7 +51,7 @@ exports.postGenderInExistentMovies = (req, res) => {
   const { movie } = req.params;
   const film = movies.find(e => e.title == movie)
   if (!film) {
-    return res.status(500).json({ message: "The movie does not exist" });
+    return res.status(500).json({ message: "O filme não existe!" });
   }
   const { genre } = req.body;
   film.genre.push(genre);
@@ -60,7 +60,7 @@ exports.postGenderInExistentMovies = (req, res) => {
     if (err) {
         return res.status(500).send({ message: err });
     }
-    console.log("The file was saved!");
+    console.log("O arquivo foi salvo!");
   });
 
   res.status(201).send(movies);

@@ -1,6 +1,11 @@
 const express = require("express")
 const app = express()
 
+app.all("*", function(req, res, next){
+  console.log("passamos pelo app, huehuehuehue!")
+  next()
+}) 
+
 //rotas
 const index = require("./routes/index")
 const filmes = require("./routes/filmesRoute")
